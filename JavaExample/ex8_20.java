@@ -1,7 +1,4 @@
-package Java;
-
-import java.io.Closeable;
-import java.nio.charset.CoderMalfunctionError;
+package JavaExample;
 
 public class ex8_20 {
     public static void main(String args[]) {
