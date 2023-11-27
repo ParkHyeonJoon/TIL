@@ -1,4 +1,4 @@
-package JavaExample;
+package JavaExample.Ex08;
 
 public class ex8_20 {
     public static void main(String args[]) {
