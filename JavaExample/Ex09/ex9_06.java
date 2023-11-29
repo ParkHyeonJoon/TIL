@@ -17,7 +17,7 @@ class Card {
         return "kind : " + kind + ", number : " + number; // Card인스턴스의 kind와 number를 문자열로 출력
     }
 }
-public class CardToString2 {
+public class ex9_06 {
     public static void main(String[] args) {
         Card c1 = new Card();
         Card c2 = new Card("Heart", 10);
