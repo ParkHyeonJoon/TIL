@@ -188,5 +188,137 @@ c.p = new Point(this.p.x, this.p.y);
 
 ## 1.2 String 클래스
 
+- **변경 불가능한 클래스**
+  - 한번 생성된 String인스턴스가 갖고 있는 문자열은 읽어 올 수만 있다.
+  - 문자열이 바뀌면 새로운 문자열이 담긴 String인스턴스가 생성 되는 것.
+  
+- 빈 문자열이 가능하다. String s = "";(O) String s = null;(X)
 
+### join()과 StringJoiner
 
+join()은 여러 문자열 사이에 구분자를 넣어서 결합한다.
+split()의 반대 작업.
+
+```agsl
+String animals = "dog,cat,bear";
+String[] arr = animals.split(","); // 문자열을 ','를 구분자로 나눠서 배열에 저장
+String str =  String.join("-", arr); // 배열의 문자열을 '-'로 구분해서 결합
+System.out.print(str) // dog-cat-bear
+```
+
+java.util.StringJoiner 클래스 사용법
+```agsl
+StringJoiner sj = new StringJoiner(",", "[", "]");
+String[] strArr = { "aaa", "bbb", "ccc" };
+
+for(String s : strArr) {
+    sj.add(s.toUpperCase());
+}
+System.out.println(sj.toString()); // [AAA, BBB, CCC]
+```
+
+### String.format()
+
+format()은 형식화된 문자열을 만들어내는 메서드. printf()와 방법이 아예 같다.
+
+```agsl
+String str = String.format("%d 더하기 %d는 %d입니다.", 3, 5, 3+5);
+System.out.println(str) // 3 더하기 5는 8입니다.
+```
+
+### 기본형 <---> 문자형
+
+**기본형-->문자형**
+1. String.valueOf()를 사용한다.
+2. 숫자에 빈 문자열""을 더해준다.
+
+**String-->기본형**
+
+ Integer.parseInt(String s)
+
+ Long.parseLong(String s)
+
+## 1.3 StringBuffer클래스와 StringBuilder클래스
+
+**StringBuffer**는 String과 달리 내용 변경이 가능하다. 
+1. StringBuffer sb = new StringBuffer("abc");
+2. sb.append("123"); // sb내용 뒤에 "123"을 추가한다.
+3. String sb2 = sb.append("ZZ"); // sb내용 뒤에 "ZZ"를 추가한다.
+
+append()는 반환타입이 StringBuffer로 자신의 주소를 반환한다.
+
+StringBuffer클래스에는 equals()는 오버라이딩X, toString()은 오버라이딩O
+
+| 메서드 / 설명                                   | 예제 / 결과                                                                       |
+|--------------------------------------------|-------------------------------------------------------------------------------|
+| StringBuffer()                             | StringBuffer sb = new StringBuffer();<br/>sb = ""                             |
+| StringBuffer(int length)                   | StringBuffer sb = new StringBuffer(10);<br/>sb = ""                           |
+| StringBuffer(STring str)                   | StringBuffer sb = new StringBuffer("Hi");<br/>sb = "Hi"                       |
+| int capacity()<br/>StringBuffer인스턴스의 크기    | StringBuffer sb = new StringBuffer(100);<br/> int buffersize = sb.capacity(); |
+
+**StringBuilder**는 멀티쓰레드에 안전하도록 동기화 되어있다. 
+
+멀티쓰레드로 작성된 프로그램이 아닌 경우, StringBuffer의 동기화는 성능만 떨어뜨리게 된다.
+
+StringBuffer에서 쓰레드의 동기화만 뺀 StringBuilder.
+
+## 1.5 래퍼(wrapper) 클래스
+
+자바에서 8개의 기본형을 객체로 다루지 않는다.
+
+기본형 변수를 객체로 다뤄야 할 경우 사용하는 것이 **래퍼(wrapper)클래스**이다.
+
+### Number 클래스
+
+기본형 중에 숫자와 관련된 래퍼 클래스들의 조상 클래스이다.
+
+그 외에도 BigInteger(long 보다 큰 범위) 와 BigDecimal(double 보다 큰 범위)가 있다. 
+
+### 문자열 --> 숫자로
+
+**타입.parse타입(String s)** 형식의 메서드와 **타입.valueOf()** 형식의 메소드.
+
+전자는 반환값이 기본형이고, 후자는 반환값이 래퍼 클래스 타입이다.
+
+- static int parseInt(String s, int radix) // 문자열 s를 radix진법으로 인식
+  - int i = Integer.parseInt("100", 2); // 100(2) -> 4
+  - int i = Integer.parseInt("100", 8); // 100(8) -> 64
+  - int i = Integer.parseInt("FF", 16); // FF(16) -> 255
+
+### 오토박싱 & 언박싱
+JDK1.5 전까지는 기본형과 참조형 간의 연산이 불가능했다.
+
+지금은 컴파일러가 자동으로 변환하는 코드를 넣어줘 가능해졌다.
+<table>
+  <tr>
+    <th>컴파일 전의 코드</th>
+    <th>컴파일 후의 코드</th>
+  </tr>
+  <tr>
+    <td>
+    int i = 5;<br/>
+    Integer iObj = new Integer(7);<br/>
+    int sum = i + iObj; // 에러
+    </td>
+    <td>
+    int i = 5;<br/>
+    Integer iObj = new Integer(7);<br/>
+    int sum = i + iObj.intValue();
+    </td>
+  </tr>
+</table>
+
+이 외에도 객체배열을 가지고 있는 Vector클래스나 ArraryList클래스에 기본형 값을 저장해야 할 때,
+형변환이 필요할 때도 컴파일러가 자동으로 코드 추가 해준다.
+
+기본형 값 --> 래퍼 클래스 객체 : **오토박싱**
+
+래퍼 클래스 객체 --> 기본형 값 : **언박싱**
+
+ArrayList에서의 오토박싱 & 언박싱
+```agsl
+ArrayList<Integer> list = new ArrayList<Integer>();
+list.add(10); // 오토박싱. 10 -> new Integer(10)
+
+int value = list.get(0); // 언박싱. new Integer(10) -> 10
+```
