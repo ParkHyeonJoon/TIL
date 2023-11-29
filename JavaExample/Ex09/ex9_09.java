@@ -47,7 +47,7 @@ class Point {
         return "("+x+", "+y+")";
     }
 }
-public class ShallowDeepCopy {
+public class ex9_09 {
     public static void main(String[] args) {
         Circle c1 = new Circle(new Point(1, 1), 2.0);
         Circle c2 = c1.shallowCopy();
