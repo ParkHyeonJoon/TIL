@@ -322,3 +322,81 @@ list.add(10); // 오토박싱. 10 -> new Integer(10)
 
 int value = list.get(0); // 언박싱. new Integer(10) -> 10
 ```
+
+# 2. 유용한 클래스
+
+## java.util.Objects클래스
+
+- static boolean isNull(Object obj)
+- static boolean nonNull(Object obj)
+- static <T> T requireNonNull(T obj)
+  - 해당 객체가 null이면 NullPointException을 발생시킨다.
+  - (T obj, String message) -> 두번째 매개변수로 지정하는 문자열은 예외의 메시지.
+
+- static int compare(Object a, Object b, Comparator c)
+  - 비교대상이 같으면 0, 크면 양수, 작으면 음수 반환.
+- static boolean equals(Object a, Object b)
+- static boolean deepEquals(Object a, Object b)
+  - 객체를 재귀적으로 비교. 다차원 배열의 비교가 가능하다.
+- equals(), toString(), hashCode() 모두 Object에도 있지만 Objects클래스에 있는 메서드들은 내부적으로 Null 검사를 해준다.
+
+
+## java.util.Random클래스
+
+- 난수를 얻는 방법
+  - double randNum = Math.random();
+  - double randNum = **new Random().nextDouble()**;
+
+- Random()은 종자값을 System.currentTimeMillis()로 하여 난수가 계속 바뀐다.
+- Random(long seed)는 매개변수 seed를 종자값으로 하는 Random인스턴스를 생성한다.
+- next타입형() -> ex) nextInt(), nextDouble(), nextFloat()
+- next타입형(int n) -> 0~n 범위에 있는 int값 반환한다.
+
+## 정규식 - java.util.regex패키지
+
+- **정규식** : 텍스트 데이터 중에서 **원하는 조건(패턴)과 일치하는 문자열**을 찾아내기 위해
+사용하는 것으로 미리 정의된 기호와 문자를 이용해서 작성한다.
+
+- Patter : 정규식을 정의하는데 사용한다.
+- Matcher : 정규식(패턴)을 데이터와 비교하는 역할을 한다.
+
+1. 정규식을 매개변수로 Patter클래스의 static메서드인 **Pattern compile(String regex)을
+호출하여 Pattern인스턴스를 얻는다.
+>Patter p = Pattern.compile("c[a-z]*");
+2. 정규식으로 비교할 대상을 배개변수로 Pattern클래스의 Matcher matcher(CharSequence input)를
+호출해서 Matcher인스턴스를 얻는다.
+>Matcher m = p.matcher(data[i]);
+3. Matcher인스턴스에 boolean matches()를 호출해서 정규식에 부합하는지 확인한다.
+>if(m.matches())
+
+- group(int i)
+  - 정규식 '(0\\d{1,2})-(\\d{3,4})-(\\d{4})'은 괄호를 이용해서 세 부분으로 나눴다.
+  - 0으로 시작하는 최소 2자리 최대 3자리 숫자(0포함), 최소 3자리 최대 4자리 숫자, 4자리 숫자
+  - group() or group(0)은 매칭된 문자열 전체, group(1)은 첫번째 그룹, group(2)는 두번째 그룹, group(3)은 세번째 그룹.
+
+- find()
+  - 주어진 소스 내에서 패턴과 일치하는 부분을 찾으면 true, 못 찾으면 false
+  - 다시 find()를 호출하면 전에 발견한 패턴과 일치하는 부분의 다음부터 다시 매칭 시작한다.
+  - start()와 end()로 일치하는 부분을 찾아 낼 수 있다.
+  - appendReplacement(StringBuffer sb, String replacement)로 치환할 수 있다.
+
+## java.util.StringTokenizer 클래스
+
+<table>
+  <tr>
+    <th>생성자/메서드</th>
+    <td>설명</td>
+  </tr>
+  <tr>
+    <th>StringTokenizer(String str, String delim)</th>
+    <td>문자열(str)을 지정된 구분자(delim)로 나누는 StringTokenizer를 생성한다.</td>
+  </tr>
+  <tr>
+    <th>boolean hasMoreTokens()</th>
+    <td>토큰이 남아있는지 알려준다.</td>
+  </tr>
+  <tr>
+    <th>String nextToken()</th>
+    <td>다음 토큰을 반환한다.</td>
+  </tr>
+</table>
