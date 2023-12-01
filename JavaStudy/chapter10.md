@@ -15,8 +15,9 @@
 *get(Calendar.MONTH)로 얻어오는 값의 범위가 0~11이므로 0이면 1월, 11이면 12월이다.*
  
 두 날짜간의 차이를 알고 싶으면 'boolean after(Object when)'와 'boolean before(Object when)' 사용.
+****
 
-## 형식화 클래스
+# 형식화 클래스
 
 - DecimalFormat
   - 숫자 데이터를 형식화 하여 사용할 수 있다.
@@ -61,8 +62,45 @@ Date d = new Date();
 Calendar cal = Calendar.getInstance();
 cal.setTime(d);
 ```
-SimpleDateFormate의 parse(String source)는 문자열source을 날짜Date인스턴스로
+SimpleDateFormate의 parse(String source)는 문자열source을 날짜Date인스턴스로 변환해준다.
 
 
-## ChoieFormat
+## ChoiceFormat
 
+- ChoiceFormat
+  - 특정 범위에 속하는 값을 문자열로 변환한다.
+  
+- MessageFormat
+  - 데이터를 정해진 양식에 맞게 출력할 수 있도록 도와준다.
+
+****
+
+# java.time.패키지
+
+- 핵심 클래스
+  - LocalDate : 날짜를 표현할 때
+  - LocalTime : 시간을 표현할 때
+  - LocalDateTime : 날짜와 시간을 표현할 때
+  - Period : 두 날짜간의 차이를 표현할 때
+    - between()으로. 
+  - Duration : 시간의 차이를 표현할 때
+
+- 클래스 객체 생성 방법
+  - now() : 현재 날짜와 시간. ex) LocalDate.now(), LocalTime.now()
+  - of() : 필드의 값을 지정. ex) LocalDate.of(2015, 11, 23), LocalTime.of(23, 59, 59)
+  
+- Temporal, TemporalAccessor, TemporalAdjuster를 구현한 클래스 
+  - LocalDate, LocalTime, LocalDateTime, ZonedDateTime, Instant 등
+- TemporalAmout를 구현한 클래스 
+  - Period, Duration
+
+- 날짜와 시간의 비교 - isAfter(), isBefore(), isEqual()
+
+- **Instant**
+  - 에포크타임(EPOCH TIME)부터 경과된 시간을 나노초 단위로 표현한다.
+
+- TemporalAdjusters
+  - 자주 쓰일만한 날짜 계산들을 대신 해주는 메서드를 정의해놓은 클래스.
+
+- 파싱과 포맷
+  - 날짜와 시간의 형식화에는 format()이 사용된다. 
