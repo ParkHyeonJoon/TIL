@@ -20,32 +20,32 @@
         <th>메서드</th><th>설 명</th>
     </tr>
     <tr>
-        <th>boolean add(Object O)</br>boolean addAll(Collection c)</th>
-        <th>지정된 객체(o) 또는 Collection(c)의 객체들을 Collection에 추가한다.</th>
+        <td>boolean add(Object O)</br>boolean addAll(Collection c)</td>
+        <td>지정된 객체(o) 또는 Collection(c)의 객체들을 Collection에 추가한다.</td>
     </tr>
     <tr>
-        <th>void clear()</th>
-        <th>Collection의 모든 객체를 삭제한다.</th>
+        <td>void clear()</td>
+        <td>Collection의 모든 객체를 삭제한다.</td>
     </tr>
     <tr>
-        <th>boolean contains(Object o)</br>boolean containsAll(Collection c)</th>
-        <th>지정된 객체(o) 또는 Collection의 객체들이 Collection에 포함되어 있는지 확인한다.</th>
+        <td>boolean contains(Object o)</br>boolean containsAll(Collection c)</td>
+        <td>지정된 객체(o) 또는 Collection의 객체들이 Collection에 포함되어 있는지 확인한다.</td>
     </tr>
     <tr>
-        <th>boolean equals(Object o)</th>
-        <th>동일한 Collection인지 비교한다.</th>
+        <td>boolean equals(Object o)</td>
+        <td>동일한 Collection인지 비교한다.</td>
     </tr>
     <tr>
-        <th>int hashCode()</th>
-        <th>Collection의 hash code를 반환한다.</th>
+        <td>int hashCode()</td>
+        <td>Collection의 hash code를 반환한다.</td>
     </tr>
     <tr>
-        <th>boolean isEmpty()</th>
-        <th>Collection이 비어있는지 확인한다.</th>
+        <td>boolean isEmpty()</td>
+        <td>Collection이 비어있는지 확인한다.</td>
     </tr>
     <tr>
-        <th>Iterator iterator()</th>
-        <th>Collection의 Iterator를 얻어서 반환한다.</th>
+        <td>Iterator iterator()</td>
+        <td>Collection의 Iterator를 얻어서 반환한다.</td>
     </tr>
     <tr>
         <td>boolean removeAl(Collectino c)</td>
@@ -241,43 +241,104 @@ List인터페이스를 구현한다. 데이터 저장순서 유지, 중복을 �
     </tr>
     <tr>
         <td>void add(int index, Object element)</td>
-        <td>지정된 위치에 객체를 저장.</td>
+        <td>지정된 위치(index)에 객체를 저장.</td>
     </tr>
     <tr>
         <td>boolean addAll(Collection c)</td>
         <td>주어진 컬렉션의 모든 객체를 저장한다.</td>
     </tr>
     <tr>
-        <td>int hashCode()</td>
-        <td>해시코드를 반환한다.</td>
+        <td>boolean addAll(int index, Collection c)</td>
+        <td>저장된 위치부터 주어진 컬렉션의 모든 객체를 저장한다.</td>
+    </tr>
+    <tr>
+        <td>void clear()</td>
+        <td>ArrayList를 완전히 비운다.</td>
+    </tr>
+    <tr>
+        <td>Object clone()</td>
+        <td>ArrayList를 복제한다.</td>
+    </tr>
+    <tr>
+        <td>boolean contains(Object o)</td>
+        <td>저장된 객체(o)가 ArrayList에 포함되어 있는지 확인</td>
+    </tr>
+    <tr>
+        <td>void ensureCapacity(int minCapacity)</td>
+        <td>ArrayList의 용량이 최소한 minCapacity가 되도록 한다..</td>
+    </tr>
+    <tr>
+        <td>Object get(int index)</td>
+        <td>지정된 위치(index)에 저장된 객체를 반환한다.</td>
+    </tr>
+    <tr>
+        <td>int indexOf(Object o)</td>
+        <td>지정된 객체가 저장된 위치를 찾아 반환한다.</td>
     </tr>
     <tr>
         <td>boolean isEmpty()</td>
-        <td>Map이 비어있는지 확인한다.</td>
+        <td>ArrayList가 비어있는지 확인한다.</td>
     </tr>
     <tr>
-        <td>Set keySet()</td>
-        <td>Map에 저장된 모든 key객체를 반환한다.</td>
+        <td>Iterator iterator()</td>
+        <td>ArrayList의 Iterator객체를 반환한다.</td>
     </tr>
     <tr>
-        <td>Object put(Object key, Object value)</td>
-        <td>Map에 value객체를 key객체에 연결(mapping)하여 저장한다.</td>
+        <td>int lastIndexOf(Object o)</td>
+        <td>객체(o)가 저장된 위치를 끝부터 역방향으로 검색해서 반환한다.</td>
     </tr>
     <tr>
-        <td>void putAll(Map t)</td>
-        <td>지정된 Map의 모든 key-value쌍을 추가한다.</td>
+        <td>ListIterator listIterator()</td>
+        <td>ArrayList의 ListIterator를 반환한다.</td>
     </tr>
     <tr>
-        <td>Object remove(Object key)</td>
-        <td>지정한 key객체와 일치하는 key-value객체를 삭제한다.</td>
+        <td>ListIterator listIterator(int index)</td>
+        <td>ArrayList의 지정된 위치부터 시작하는 ListIterator를 반환한다.</td>
+    </tr>
+    <tr>
+        <td>Object remove(int index)</td>
+        <td>지정된 위치(index)에 있는 객체를 제거한다.</td>
+    </tr>
+    <tr>
+        <td>boolean remove(Object o)</td>
+        <td>지정한 객체를 제거한다.(성공 true, 실패 false)</td>
+    </tr>
+    <tr>
+        <td>boolean removeAll(Collection c)</td>
+        <td>지정한 컬렉션에 저장된 것과 동일한 객체들을 ArrayList에서 제거한다.</td>
+    </tr>
+    <tr>
+        <td>boolean retainAll(Collection c)</td>
+        <td>ArrayList에 저장된 객체 중에서 주어진 컬렉션과 공통된 것들만을 남기고
+        나머지는 삭제한다.</td>
+    </tr>
+    <tr>
+        <td>Object set(int index, Object element)</td>
+        <td>주어진 객체(element)를 지정된 위치(index)에 저장한다.</td>
     </tr>
     <tr>
         <td>int size()</td>
-        <td>Map에 저장된 key-value쌍의 개수를 반환한다.</td>
+        <td>ArrayList에 저장된 객체의 개수를 반환한다.</td>
     </tr>
     <tr>
-        <td>Collection values()</td>
-        <td>Map에 저장된 모든 value객체를 반환한다.</td>
+        <td>void sort(Comparator c)</td>
+        <td>지정된 정렬기준(c)으로 ArrayList를 정렬한다.</td>
+    </tr>
+    <tr>
+        <td>List subList(int fromIndex, int toIndex)</td>
+        <td>fromIndex부터 toIndex사이에 저장된 객체를 반환한다.</td>
+    </tr>
+    <tr>
+        <td>Object[] toArray()</td>
+        <td>ArrayList에 저장된 모든 객체들을 객체배열로 반환한다.</td>
+    </tr>
+    <tr>
+        <td>Object[] toArray(Object[] a)</td>
+        <td>ArrayList에 저장된 모든 객체들을 객체배열 a에 담아 반환한다.</td>
+    </tr>
+    <tr>
+        <td>void trimToSize()</td>
+        <td>용량을 크기에 맞게 줄인다.</td>
     </tr>
 </table>
  
