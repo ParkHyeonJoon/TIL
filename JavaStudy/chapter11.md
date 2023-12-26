@@ -342,3 +342,137 @@ List인터페이스를 구현한다. 데이터 저장순서 유지, 중복을 �
     </tr>
 </table>
  
+## LinkedList
+
+배열의 단점(크기 변경 X, 비순차적인 데이터의 추가 or 삭제에 시간이 많이 걸림) 보완하기 위해 링크드 리스트 고안.
+
+각 요소들은 자신과 연결된 다음 요소에 대한 참조(주소값)와 데이터로 구성.
+
+**더블 링크드 리스트**는 양방향.
+
+이전 요소에 대한 참조변수를 하나 더 추가하여 구성
+
+<table>
+    <tr>
+        <th>메서드</th><th>설 명</th>
+    </tr>
+    <tr>
+      Queue인터페이스 구현하면서 추가된 것.
+    </tr>
+    <tr>
+        <td>Object element()</td>
+        <td>LinkedList의 첫 번째 요소를 반환.</td>
+    </tr>
+    <tr>  
+        <td>boolean offer(Object o)</td>
+        <td>지정된 객체(o)를 LinkedList의 끝에 추가. 성공하면 true, 실패하면 false.</td>
+    </tr>
+    <tr>
+        <td>Object peek()</td>
+        <td>LinkedList의 첫 번째 요소를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object poll()</td>
+        <td>LinkedList의 첫 번째 요소를 반환. LinkedList에서는 제거된다.</td>
+    </tr>
+    <tr>
+        <td>Object remove()</td>
+        <td>LinkedList의 첫 번째 요소를 제거.</td>
+    </tr>
+    <tr>
+      Deque인터페이스를 구현하면서 추가된 것.
+    </tr>
+    <tr>
+        <td>boolean addAll(Collection c)</td>
+        <td>주어진 컬렉션의 모든 객체를 저장한다.</td>
+    </tr>
+    <tr>
+        <td>void addFirst(Object o)</td>
+        <td>LinkedList의 맨 앞에 객체(o)를 추가.</td>
+    </tr>
+    <tr>
+        <td>void addLast(Object o)</td>
+        <td>LinkedList의 맨 끝에 객체(o)를 추가.</td>
+    </tr>
+    <tr>
+        <td>Iterator descendingIterator()</td>
+        <td>역순으로 조회하기 위한 DescendingIterator를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object getFirst()</td>
+        <td>LinkedList의 첫 번째 요소를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object getLast()</td>
+        <td>LinkedList의 마지막 요소를 반환.</td>
+    </tr>
+    <tr>
+        <td>boolean offerFirst(Object o)</td>
+        <td>LinkedList의 맨 앞에 객체(o)를 추가. 성공하면 true.</td>
+    </tr>
+    <tr>
+        <td>boolean offerLast(Object o)</td>
+        <td>LinkedList의 맨 끝에 객체(o)를 추가. 성공하면 true.</td>
+    </tr>
+    <tr>
+        <td>Object peekFirst()</td>
+        <td>LinkedList의 첫번째 요소를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object peekLast()</td>
+        <td>LinkedList의 마지막 요소를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object pollFirst()</td>
+        <td>LinkedList의 첫번째 요소를 반환하면서 제거.</td>
+    </tr>
+    <tr>
+        <td>Object pollLast()</td>
+        <td>LinkedList의 마지막 요소를 반환하면서 제거.</td>
+    </tr>
+    <tr>
+        <td>Object pop()</td>
+        <td>removeFirst()와 동일.</td>
+    </tr>
+    <tr>
+        <td>void push(Object o)</td>
+        <td>addFirst()와 동일.</td>
+    </tr>
+    <tr>
+        <td>Object removeFirst()</td>
+        <td>LinkedList의 첫번째 요소를 제거.</td>
+    </tr>
+    <tr>
+        <td>Object removeLast()</td>
+        <td>LinkedList의 마지막 요소를 제거.</td>
+    </tr>
+    <tr>
+        <td>boolean removeFirstOccurrence(Object o)</td>
+        <td>LinkedList에서 첫번째로 일치하는 객체를 제거.</td>
+    </tr>
+    <tr>
+        <td>boolean removeLastOccurrence(Object o)</td>
+        <td>LinkedList에서 마지막으로 일치하는 객체를 제거.</td>
+    </tr>
+</table>
+
+LinkedList도 List인터페이스를 구현했기 때문에 ArrayList와 제공하는 메서드의 종류와
+기능은 거의 같다.
+
+LinkedList vs ArrayList
+
+순차적으로 추가/삭제하는 경우에는 ArrayList가 LinkedList보다 빠르다.
+
+중간 데이터를 추가/삭제하는 경우에는 LinkedList가 ArrayList보다 빠르다.
+
+## 1.4 Stack과 Queue
+
+**Stack**은 **LIFO**(Last In First Out)이고,
+
+**Queue**는 **FIFO**(First In First Out)이다.
+
+Stack에는 ArrayList와 같은 배열기반의 컬렉션 클래스.
+Queue는 ArrayList와 같은 배열기반의 컬렉션 클래스를 사용한다면 꺼낼때마다 빈공간 생겨</br>
+빈 공간을 채우기 위해 계속 복사가 발생하므로 비효율적. 데이터 추가/삭제가 쉬운 LinkedList가 나음.
+
+
