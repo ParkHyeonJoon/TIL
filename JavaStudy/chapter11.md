@@ -467,12 +467,143 @@ LinkedList vs ArrayList
 
 ## 1.4 Stack과 Queue
 
-**Stack**은 **LIFO**(Last In First Out)이고,
+**Stack**은 **LIFO**(Last In First Out)이고, **Stack**에는 ArrayList와 같은 배열기반의 컬렉션 클래스가 적합.
 
-**Queue**는 **FIFO**(First In First Out)이다.
+스택의 활용 예 - 수식계산, 수식괄호검사, 워드프로세서의 undo/redo, 웹브라우저의 뒤로/앞으로
 
-Stack에는 ArrayList와 같은 배열기반의 컬렉션 클래스.
-Queue는 ArrayList와 같은 배열기반의 컬렉션 클래스를 사용한다면 꺼낼때마다 빈공간 생겨</br>
+**Stack의 메서드**
+<table>
+    <tr>
+        <th>메서드</th><th>설 명</th>
+    </tr>
+    <tr>
+        <td>boolean empty()</td>
+        <td>Stack이 비어있는지 알려준다.</td>
+    </tr>
+    <tr>  
+        <td>Object peek()</td>
+        <td>Stack의 맨 위에 저장된 객체를 반환. pop()과 달리 Stack에서 객체를
+            꺼내지는 않음.(비었을 때는 EmptyStackException 발생)</td>
+    </tr>
+    <tr>
+        <td>Object pop()</td>
+        <td>Stack의 맨 위에 저장된 객체를 꺼낸다.(비었을 때는 EmptyStackException 발생)</td>
+    </tr>
+    <tr>
+        <td>Object push(Object item)</td>
+        <td>Stack에 객체(item)를 저장한다.</td>
+    </tr>
+    <tr>
+        <td>int search(Object o)</td>
+        <td>Stack에서 주어진 객체(o)를 찾아서 그 위치를 반환. 못 찾으면 -1을 반환.</td>
+    </tr>
+</table>
+
+**Queue**는 **FIFO**(First In First Out)이다.</br>
+**Queue**는 ArrayList와 같은 배열기반의 컬렉션 클래스를 사용한다면 꺼낼때마다 빈공간 생겨</br>
 빈 공간을 채우기 위해 계속 복사가 발생하므로 비효율적. 데이터 추가/삭제가 쉬운 LinkedList가 나음.
 
+큐의 활용 예 - 최근사용문서, 인쇄작업 대기목록, 버퍼(buffer)
+
+**Queue의 메서드**
+<table>
+    <tr>
+        <th>메서드</th><th>설 명</th>
+    </tr>
+    <tr>
+        <td>boolean add()</td>
+        <td>지정된 객체를 Queue에 추가한다. 성공하면 true를 반환. 저장공간이 부족하면
+            IllegalStateException 발생.</td>
+    </tr>
+    <tr>  
+        <td>Object remove()</td>
+        <td>Queue에서 객체를 꺼내 반환. 비어있으면 NoSuchElementException 발생.</td>
+    </tr>
+    <tr>
+        <td>Object element()</td>
+        <td>삭제없이 요소를 읽어온다. peek와 달리 Queue가 비었을 때 NoSuchElementException 발생.</td>
+    </tr>
+    <tr>
+        <td>boolean offer(Object o)</td>
+        <td>Queue에 객체를 저장. 성공하면 true, 실패하면 false를 반환.</td>
+    </tr>
+    <tr>
+        <td>Object poll()</td>
+        <td>Queue에서 객체를 꺼내서 반환. 비어있으면 null을 반환.</td>
+    </tr>
+    <tr>
+        <td>Object peek()</td>
+        <td>삭제없이 요소를 읽어온다. Queue가 비어있으면 null을 반환.</td>
+    </tr>
+</table>
+
+### PriorityQueue
+
+Queue인터페이스의 구현체 중 하나로 저장한 순서 관계없이 우선순위가 높은 것부터 꺼냄.
+
+우선순위는 숫자가 작을수록 높은 것.
+
+### Deque(Double-Ended Queue)
+
+Deque은 양쪽 끝에 추가/삭제가 가능하다. 스택과 큐를 하나로 합쳐놓은 것.
+
+<table>
+  <tr>
+    <td>Deque</td>
+    <td>Queue</td>
+    <td>Stack</td>
+  </tr>
+  <tr>
+    <td>offerLast()</td>
+    <td>offer()</td>
+    <td>push()</td>
+  </tr>
+  <tr>
+    <td>pollLast()</td>
+    <td>-</td>
+    <td>pop()</td>
+  </tr>
+  <tr>
+    <td>pollFirst()</td>
+    <td>poll()</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>peekFirst()</td>
+    <td>peek()</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>peekLast()</td>
+    <td>-</td>
+    <td>peek()</td>
+  </tr>
+</table>
+
+## 1.5 Iterator, ListIterator, Enumeration
+컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스.
+
+## Iterator
+컬렉션에 저장된 요소들을 읽어오는 방법을 표준화.
+
+```agsl
+public interface Iterator {
+    boolean hasNext();
+    Object next();
+    void remove();
+}
+public interface Collection {
+    ```
+    public Iterator iterator();
+    ```
+}
+```
+
+<table>
+<tr><td>메서드</td><td>설 명</td></tr>
+<tr><td>boolean hasNext()</td><td>읽어 올 요소가 남아있는지 확인한다. 있으면 true, 없으면 false를 반환한다.</td></tr>
+<tr><td>Object next()</td><td>다음 요로를 읽어온다. next()를 호출하기 전에 hasNext()를 호출해서 읽어 올 요소가 있는지</br>
+                              확인하는 것이 안전하다.</td></tr>
+<tr><td>void remove()</td><td>next()로 읽어 온 요소를 삭제한다. next()를 호출한 다음에 remove()를 호출해야한다.(선택적 기능).</td></tr>
+</table>
 
