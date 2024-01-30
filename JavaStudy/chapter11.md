@@ -583,7 +583,7 @@ Deque은 양쪽 끝에 추가/삭제가 가능하다. 스택과 큐를 하나로
 ## 1.5 Iterator, ListIterator, Enumeration
 컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스.
 
-## Iterator
+### Iterator
 컬렉션에 저장된 요소들을 읽어오는 방법을 표준화.
 
 ```agsl
@@ -606,4 +606,75 @@ public interface Collection {
                               확인하는 것이 안전하다.</td></tr>
 <tr><td>void remove()</td><td>next()로 읽어 온 요소를 삭제한다. next()를 호출한 다음에 remove()를 호출해야한다.(선택적 기능).</td></tr>
 </table>
+
+```agsl
+Collection c = new ArrayList();
+Iterator it = c.iterator();
+while(it.hasNext()) {
+    System.out.println(it.next());
+}
+```
+
+Map인터페이스를 구현한 컬렉션 클래스는 키와 값을 쌍으로 저장하고 있기 때문에 **keySet()** 이나 **entrySet()**
+을 사용해 iterator()를 호출해야함.
+```agsl
+Map map = new HashMap();
+Iterator it = map.entrySet().iterator();
+```
+
+**Enumeration** : Iterator의 구버전
+
+**ListIterator** : Iterator에 양방향 조회기능추가(List를 구현한 경우만 사용가능)
+
+### Arrays
+
+* 배열의 복사
+  * copyOf() : 배열 전체를 복사해서 새로운 배열을 만들어 반환.
+  * copyOfRange() : 배열의 일부를 복사해서 새로운 배열을 만들어 반환.
+
+* 배열 채우기
+  * fill() : 배열의 모든 요소를 지정된 값으로 채움.
+  * setAll() : 배열을 채우는데 사용할 함수형 인터페이스를 매개변수로 받음.
+```agsl
+int[] arr = new int[5];
+Arrays.fill(arr, 9); // arr = [9, 9, 9, 9, 9]
+Arrays.setAll(arr, () -> (int)(Math.random()*5) + 1); // arr = [1, 5, 2, 1, 1]
+```
+* 배열의 정렬과 검색
+  * sort() : 배열을 정렬할 때 사용. 
+  * binarySearch() : 배열에 저장된 요소를 검색할 때 사용.
+```agsl
+int[] arr = { 3, 2, 0, 1, 4 };
+int idx = Arrays.binarySearch(arr, 2); // idx = -5 <- 잘못된 결과
+
+Arrays.sort(arr); // 배열 arr을 정렬한다.
+System.out.println(Arrays.toString(arr)); // [0, 1, 2, 3, 4]
+int idx = Arrays.binarySearch(arr, 2); // idx = 2 <- 올바른 결과
+```
+
+* 배열의 비교와 출력
+  * equals() : 두 배열에 저장된 모든 요소를 비교하여 같으면 true, 다르면 false
+  * toString() : 배열의 모든 요소를 문자열로 편하게 출력, 일차원 배열에서만 가능.
+
+다차원 배열에서 사용하고 싶으면 deepEquals(), deepToString()을 사용함.
+
+* 배열을 List로 변환
+  * asList(Object... a) : 배열을 List에 담아서 반환함. 
+  * asList()가 반환한 List의 크기를 변경 불가. 추가, 삭제 불가.
+```agsl
+List list = Arrays.asList(new Integer[] {1,2,3,4,5}); // list = [1, 2, 3, 4, 5]
+List list = Arrays.asList(1,2,3,4,5); // list = [1, 2, 3, 4, 5]
+list.add(6); // UnsupportedOperationException 예외 발생
+```wkr 
+크기 변경 가능한 List가 필요하다면
+```agsl
+List list = new ArrayList(Arrays.asList(1,2,3,4,5));
+```
+
+* parallelXXX(), spliterator(), stream()
+  * parallelXXX() : 여러 쓰레드가 작업을 나누어 처리.
+  * spliterator() : 여러 쓰레드가 처리할 수 있게 하나의 작업을 여러 작업으로 나누는 Spliterator를 반환.
+  * stream() : 컬렉션을 스트림으로 변환.
+
+## 1.7 Comparator와 Comparable
 
