@@ -678,11 +678,112 @@ List list = new ArrayList(Arrays.asList(1,2,3,4,5));
 
 ## 1.7 Comparator와 Comparable
 - **Comparable** : 기본 정렬기준을 구현하는데 사용.
-- **Comparator** : 기본 정렬기준 외에 다른 기준으로 정렬하고자 할 때 사용.
+```agsl
+public interface Comparator {
+    int compare(Object o1, Object o2);
+    boolean equals(Object obj);
+}
+```
+두 객체를 비교해서 비교하는 값보다 작으면 음수, 크면 양수, 같으면 0을 반환
 
+- **Comparator** : 기본 정렬기준 외에 다른 기준으로 정렬하고자 할 때 사용.
+```agsl
+public interface Comparable {
+    public int compareTo(Object o);
+}
+```
+두 객체를 비교해서 비교하는 값보다 작으면 음수, 크면 양수, 같으면 0을 반환
+
+`static void sort(Object[] a)` // 객체 배열에 저장된 객체가 구현한 Comparable에 의한 정렬
+
+`static void sort(Object[] a, Comparator c)` // 지정한 Comparator에 의한 정렬
+
+-> String의 Comparable구현은 문자열이 사전 순으로 정렬되도록 작성.
 
 ## 1.8 HashSet
+Set 인터페이스의 특징대로 HashSet은 **중복된 요소를 저장하지 않음**
 
+***컬렉션 내의 중복 요소들을 쉽게 제거 가능*** ex) 프로그래머스 폰켓몬 문제
+
+<table>
+  <tr>
+    <th>생성자 또는 메서드</th>
+    <td>설명</td>
+  </tr>
+  <tr>
+    <th>HashSet()</th>
+    <td>HashSet객체를 생성한다.</td>
+  </tr>
+  <tr>
+    <th>HashSet(Collection c)</th>
+    <td>주어진 컬렉션을 포함하는 HashSet객체를 생성한다.</td>
+  </tr>
+  <tr>
+    <th>HashSet(int initialCapacity)</th>
+    <td>주어진 값을 초기용량하는 HashSet객체를 생성한다.</td>
+  </tr>
+  <tr>
+    <th>HashSet(int initialCapacity, float loadFactor)</th>
+    <td>초기용량과 load factor를 지정하는 생성자.</td>
+  </tr>
+  <tr>
+    <th>boolean add(Object o)</th>
+    <td>새로운 객체를 저장한다.</td>
+  </tr>
+  <tr>
+    <th>boolean addAll(Collection c)</th>
+    <td>주어진 컬렉션에 저장된 모든 객체들을 추가한다.(합집합)</td>
+  </tr>
+  <tr>
+    <th>void clear()</th>
+    <td>주어진 모든 객체를 삭제한다.</td>
+  </tr>
+  <tr>
+    <th>Object clone()</th>
+    <td>HashSet을 복제해서 반환한다.(얇은 복사)</td>
+  </tr>
+  <tr>
+    <th>boolean contains(Object o)</th>
+    <td>저장된 객체를 포함하고 있는지 알려준다.</td>
+  </tr>
+  <tr>
+    <th>boolean containsAll(Collection c)</th>
+    <td>주어진 컬렉션에 저장된 모든 객체들을 포함하고 있는지 알려준다.</td>
+  </tr>
+  <tr>
+    <th>boolean isEmpty()</th>
+    <td>HashSet이 비어있는지 알려준다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th></th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+  <tr>
+    <th>Iterator iterator()</th>
+    <td>Iterator를 반환한다.</td>
+  </tr>
+</table>
+ 
 ## 1.9 TreeSet
 
 ## 1.10 HashMap과 Hashtable
