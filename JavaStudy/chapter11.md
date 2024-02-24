@@ -759,34 +759,65 @@ Set 인터페이스의 특징대로 HashSet은 **중복된 요소를 저장하�
     <td>Iterator를 반환한다.</td>
   </tr>
   <tr>
-    <th></th>
-    <td>Iterator를 반환한다.</td>
+    <th>boolean remove(Object o)</th>
+    <td>지정된 객체를 HashSet에서 삭제한다.(성공하면 true, 실패하면 false)</td>
   </tr>
   <tr>
-    <th>Iterator iterator()</th>
-    <td>Iterator를 반환한다.</td>
+    <th>boolean removeAll(Collection c)</th>
+    <td>주어진 컬렉션에 저장된 모든 객체와 동일한 것들을 HashSet에서 모두 삭제한다(차집합).</td>
   </tr>
   <tr>
-    <th>Iterator iterator()</th>
-    <td>Iterator를 반환한다.</td>
+    <th>boolean retainAll(Collection c)</th>
+    <td>주어진 컬렉션에 저장된 객체와 동일한 것만 남기고 삭제한다(교집합).</td>
   </tr>
   <tr>
-    <th>Iterator iterator()</th>
-    <td>Iterator를 반환한다.</td>
+    <th>int size()</th>
+    <td>저장된 객체의 개수를 반환한다.</td>
   </tr>
   <tr>
-    <th>Iterator iterator()</th>
-    <td>Iterator를 반환한다.</td>
+    <th>Object[] toArray()</th>
+    <td>저장된 객체들을 객체배열의 형태로 반환한다.</td>
   </tr>
   <tr>
-    <th>Iterator iterator()</th>
-    <td>Iterator를 반환한다.</td>
+    <th>Object[] toArray(Object[] a)</th>
+    <td>저장된 객체들을 주어진 객체배열(a)에 담는다.</td>
   </tr>
 </table>
  
+저장순서 **유지 X**, 유지하고자 한다면 **LinkedHashSet**을 사용해야 함.
 ## 1.9 TreeSet
+이진 검색 트리(binary search tree)라는 자료구조의 형태
+
+정렬, 검색, 범위검색에 높은 성능을 보임
+
+**중복된 데이터 저장 허용 X**, **정렬된 위치에 저장**(저장순서 유지 X)
+***
+이진 검색 트리(binary search tree)
+
+- 모든 노드는 최대 두 개의 자식노드를 가질 수 있다
+- 왼쪽 자식노드의 값은 부모노드의 값보다 작고 오른쪽 자식노드의 값은 부모노드의 값보다 커야한다
+- 노드의 추가 삭제에 시간이 걸린다(순차적 저장이 아니어서)
+- 검색(범위검색)과 정렬에 유리
+- 중복된 값 저장 X
+
 
 ## 1.10 HashMap과 Hashtable
+**키**와 **값**을 묶어 하나의 **데이터**로 저장
+<table>
+  <tr>
+    <th>비객체지향적인 코드</th>
+    <th>객체지향적인 코드</th>
+  </tr>
+  <tr>
+    <td>Object[] key; <br> Object [] value; </td>
+    <td>Entry[] table; <br> class Entry { <br> 
+    Object key; <br>
+    Object value; } </td>
+  </tr>
+</table>
+
+Map 값은 중복 허용, but 키는 중복 허용 X
+
 
 ## 1.11 TreeMap
 
