@@ -820,6 +820,7 @@ Map 값은 중복 허용, but 키는 중복 허용 X
 
 
 ## 1.11 TreeMap
+treeMap은 정말 효과적인 map 중 하나입니다.
 
 ## 1.12 Properties
 
